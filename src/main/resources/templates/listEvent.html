@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr" xml:lang="fr" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<meta charset="ISO-8859-1">
+<title>CDG Evenements</title>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body>
+<style>
+	.btn1{text-align: center;color:white;font-family: Georgia;background: white;color:#565656;border: groove 0.6em #565656;border-radius:20px;font-weight:bold;}
+	.btn1:hover{background: #565656;color:black}
+	.btn{text-align: center;color:white;font-family: Georgia;background: #565656;border: solid black;border-radius:30px;font-weight:bold;}
+	.fa-sign-out {
+
+  color: white;
+}
+</style>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	  <a class="navbar-brand" href="#">CDG Evenements</a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+
+	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	    <ul class="navbar-nav mr-auto">
+
+		
+		
+			<li class="nav-item active">
+	        <a class="nav-link" href="@{/index}">Acceuil <span class="sr-only">(current)</span></a>
+	      </li>
+			<li class="nav-item active">
+	        <a class="nav-link" th:href="@{/listGroupe}">Groupes <span class="sr-only">(current)</span></a>
+	      </li>
+	      	<li class="nav-item active">
+	        <a class="nav-link" th:href="@{/listEvent}">Evenements <span class="sr-only">(current)</span></a>
+	      </li>
+	    </ul>
+	    <div class="form-inline my-2 my-lg-0">
+	        <a  class="logout" th:href="@{/logout}"><i class="fa fa-sign-out fa-2x" aria-hidden="true"></i></a>
+	      </div>
+	  </div>
+	</nav>
+	<br>
+	<br>
+<div class="container" style="margin-left:5%">
+	<h1>List des Evenements </h1>
+	
+	<a th:href = "@{/addEvent}" class="btn btn-primary btn-sm mb-3"> creer un evenement </a>
+	
+		<table border="1" class = "table table-striped table-responsive-md" style="width:140%">
+			<thead>
+				<tr>
+					<th>
+							Nom d'evenement
+					</th>
+					<th>
+							Description	
+					</th>
+					<th>
+							Type
+					</th>
+					<th>
+							Date
+					</th>
+					<th> Actions </th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="event : ${listEvents}">
+					<td th:text="${event.nom}"></td>
+					<td th:text="${event.description}"></td>
+					<td th:text="${event.type}"></td>
+					<td th:text="${event.Date}"></td>
+					<td > 
+						
+						<a th:href="@{/updateEvent/{id}(id=${event.id})}" class="btn btn-primary">Update</a>
+					    <a th:href="@{/deleteEvent/{id}(id=${event.id})}" class="btn btn-danger">Delete</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		
+	</div>
+	
+	
+	
+</body>
+</html>

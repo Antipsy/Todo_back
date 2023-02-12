@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<meta charset="ISO-8859-1">
+<title>CDG Evenements</title>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body>
+<style>
+	.btn1{text-align: center;color:white;font-family: Georgia;background: white;color:#565656;border: groove 0.6em #565656;border-radius:20px;font-weight:bold;}
+	.btn1:hover{background: #565656;color:black}
+	.btn{text-align: center;color:white;font-family: Georgia;background: #565656;border: solid black;border-radius:30px;font-weight:bold;}
+	.fa-sign-out {
+
+  color: white;
+}
+</style>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	  <a class="navbar-brand" href="#">CDG Evenements</a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+
+	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	    <ul class="navbar-nav mr-auto">
+
+		
+		
+			<li class="nav-item active">
+	        <a class="nav-link" href="@{/index}">Acceuil <span class="sr-only">(current)</span></a>
+	      </li>
+			<li class="nav-item active">
+	        <a class="nav-link" th:href="@{/listGroupe}">Groupes <span class="sr-only">(current)</span></a>
+	      </li>
+	      <li class="nav-item active">
+	        <a class="nav-link" th:href="@{/listEvent}">Evenements <span class="sr-only">(current)</span></a>
+	      </li>
+	    </ul>
+	    <div class="form-inline my-2 my-lg-0">
+	        <a  class="logout" th:href="@{/logout}"><i class="fa fa-sign-out fa-2x" aria-hidden="true"></i></a>
+	      </div>
+	  </div>
+	</nav>
+	<br>
+	<br>
+<div class="container" style="padding-left:20%">
+
+		
+		<h2>Update Groupe</h2>
+
+		<form action="#" th:action="@{/saveGroupe}" th:object="${groupe}" id="saveGroupe"
+			method="POST">
+			
+			<!-- Add hidden form field to handle update -->
+			<input type="hidden" th:field="*{id}" />
+			
+			<input type="text" th:field="*{nom}"
+				class="form-control mb-4 col-4">
+			<div class="form-group blu-margin" >
+   				 <select class="form-control" style="width:200px" id="user" name="user" >
+    			 
+   				 <option th:each="user : ${listUsers}" th:value="${user.id}" th:text="${user.nom} + ' ' +${user.prenom}"></option>
+    			 </select>
+		 </div>
+				
+				<button type="submit" class="btn btn-info col-2"> Enregistrer</button>
+		</form>
+		
+		
+		
+		<a th:href = "@{/listGroupe}"> List des groupes</a>
+	</div>
+	
+	
+</body>
+</html>
